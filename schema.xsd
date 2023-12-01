@@ -1,0 +1,126 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader>
+<fileDesc>
+<titleStmt>
+<title>A T​BE Customisation</title>
+<author>The T​BE crew</author>
+</titleStmt>
+<publicationStmt>
+<publisher>T​EI Consortium</publisher>
+<availability status="free">
+<licence target="http​://creativecommons​.org​/licenses​/by​-sa​/3.0/"> Distributed under a Creative Commons Attribution​-Share​Alike 3​.0 Unported License </licence>
+<licence target="http​://www​.opensource​.org​/licenses​/BSD-2-Clause">
+<p>Copyright 2013 T​EI Consortium.</p>
+<p>All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+<list>
+<item>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</item>
+<item>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and​/or other materials provided with the distribution.</item>
+</list>
+<p>This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holder or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.</p>
+</licence>
+<p>T​EI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the C​C+BY and B​SD-2 licences. The C​C+BY licence is generally appropriate for usages which treat T​EI content as data or documentation. The B​SD-2 licence is generally appropriate for usage of T​EI content in a software environment. For further information or clarification, please contact the <ref target="mailto​:info​@tei​-c.org">T​EI Consortium</ref>. </p>
+</availability>
+</publicationStmt>
+<sourceDesc>
+<p>Created from scratch by James Cummings, but looking at previous tei​_minimal and tei​_bare exemplars by S​PQR and LR.</p>
+</sourceDesc>
+</fileDesc>
+</teiHeader>
+<text>
+<body>
+<head>A Minimal T​EI Customization</head>
+<p>This T​EI O​DD defines a T​EI customization that is as minimal as possible and the schema generated from it will validate a document that is minimally valid against the T​EI scheme. It includes only the ten required elements: <list rend="numbered">
+<item><gi>tei​Header</gi> from the header module to store required metadata</item>
+<item><gi>file​Desc</gi> from the header module to record information about this file</item>
+<item><gi>title​Stmt</gi> from the header module to record information about the title</item>
+<item><gi>publication​Stmt</gi> from the header module to detail how it is published</item>
+<item><gi>source​Desc</gi> from the header module to record where it is from</item>
+<item><gi>p</gi> from the core module for use in the header and the body</item>
+<item><gi>title</gi> from the core module for use in the title​Stmt</item>
+<item><gi>T​EI</gi> from the textstructure module because what is a T​EI file without that?</item>
+<item><gi>text</gi> from the textstructure module to hold some text</item>
+<item><gi>body</gi> from the textstructure module as a place to put that text</item>
+</list></p>
+<schemaSpec ident="T​BEcustom" start="T​EI" prefix="tei_" targetLang="en" docLang="en">
+<moduleRef key="figures" include="fig​Desc figure"/>
+<moduleRef key="header" include="tei​Header file​Desc title​Stmt publication​Stmt source​Desc"/>
+<moduleRef key="core" include="p title emph lg l pb pub​Place publisher q quote name graphic"/>
+<moduleRef key="textstructure" include="T​EI text body title​Page doc​Title doc​Imprint doc​Date doc​Author byline div"/>
+<moduleRef key="tei"/>
+<moduleRef key="namesdates" include="pers​Name place​Name"/>
+<elementSpec ident="name" mode="change">
+<attList>
+<attDef ident="type" mode="change">
+<valList type="closed" mode="change">
+<valItem mode="add" ident="place">
+<desc versionDate="2020​-04​-23" xml:lang="en">used for place names</desc>
+</valItem>
+<valItem mode="add" ident="person">
+<desc versionDate="2020​-04​-23" xml:lang="en">used for person names</desc>
+</valItem>
+<valItem mode="add" ident="animal">
+<desc versionDate="2020​-04​-23" xml:lang="en">used for animal names</desc>
+</valItem>
+</valList>
+</attDef>
+<attDef ident="subtype" mode="delete"/>
+<attDef ident="calendar" mode="delete"/>
+<attDef ident="cert" mode="delete"/>
+<attDef ident="evidence" mode="delete"/>
+<attDef ident="from" mode="delete"/>
+<attDef ident="full" mode="delete"/>
+<attDef ident="instant" mode="delete"/>
+<attDef ident="not​After" mode="delete"/>
+<attDef ident="not​Before" mode="delete"/>
+<attDef ident="period" mode="delete"/>
+<attDef ident="resp" mode="delete"/>
+<attDef ident="sort" mode="delete"/>
+<attDef ident="source" mode="delete"/>
+<attDef ident="to" mode="delete"/>
+<attDef ident="when" mode="delete"/>
+<attDef ident="nym​Ref" mode="delete"/>
+<attDef ident="role" mode="delete"/>
+</attList>
+</elementSpec>
+<classSpec ident="att​.naming" type="atts" mode="change">
+<attList>
+<attDef ident="nym​Ref" mode="delete"/>
+<attDef ident="ont​Status" mode="change" usage="opt" ns="http​://teibyexample​.org​/ns​/TBE">
+<desc versionDate="2020​-04​-28" xml:lang="en">describes the ontological status of a name​'s referent</desc>
+<datatype>
+<dataRef key="teidata​.enumerated"/>
+</datatype>
+<valList mode="change">
+<valItem mode="add" ident="realistic">
+<desc versionDate="2020​-04​-28" xml:lang="en">the referent can / could occur in the extra​-textual reality</desc>
+</valItem>
+<valItem mode="add" ident="mythological">
+<desc versionDate="2020​-04​-28" xml:lang="en">the referent does not exist in real life, but belongs to a major mythology</desc>
+</valItem>
+<valItem mode="add" ident="fantastic">
+<desc versionDate="2020​-04​-28" xml:lang="en">the referent can / could occur in the extra​-textual reality</desc>
+</valItem>
+</valList>
+</attDef>
+</attList>
+</classSpec>
+<elementSpec ident="animal​Name" ns="http​://teibyexample​.org​/ns​/TBE" mode="add" module="namesdates">
+<desc>contains a proper noun referring to an animal</desc>
+<classes>
+<memberOf key="att​.global"/>
+<memberOf key="model​.pers​State​Like"/>
+<memberOf key="model​.name​Like​.agent"/>
+<memberOf key="att​.datable"/>
+<memberOf key="att​.edit​Like"/>
+<memberOf key="att​.personal"/>
+<memberOf key="att​.typed"/>
+</classes>
+<content>
+<macroRef key="macro​.phrase​Seq"/>
+</content>
+</elementSpec>
+</schemaSpec>
+</body>
+</text>
+</TEI>
