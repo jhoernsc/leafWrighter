@@ -1,4 +1,3 @@
-<?xml-model href="my-custom-TEI-schema.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
